@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link rel="stylesheet" href="public/index.css">
+        <link rel="icon" type="image/x-icon" href="https://ac.blooket.com/dashclassic/favicon.ico">
+        <meta content="Peroxide" property="og:title" />
+        <meta content="Instantly destroy a Blooket game using Peroxide!" property="og:description" />
+        <meta content="https://prxb.glitch.me/" property="og:url" />
+        <meta content="https://cdn.glitch.global/4cbb78a7-55c0-4a66-8711-240dc5ce5559/cold%20500.png?v=1734827079168" property="og:image" />
+        <meta content="#50a5e6" data-react-helmet="true" name="theme-color" />
+        <title>Peroxide</title>
+    </head>
+    <body>          
+        <div id="title">
+            <h1>Peroxide</h1>
+            <p>Let's Play Blooket!</p>
+            <div id="status"></div>
+        </div>
+        <main>              
+            <form class="p-1 gap-1">
+                <!-- Game ID -->
+                <input type="text" id="game_id" class="form-control mb-2" placeholder="Game ID" minlength="7" maxlength="7" required autocapitalize="off" autocomplete="off" />
+
+                <!-- Bot Name -->
+                <input type="text" id="bot_name" class="form-control mb-2" placeholder="Bot Name" maxlength="12" autocapitalize="off" autocomplete="off" />
+
+                <!-- Bot Amount -->
+                <input type="number" id="bot_amount" class="form-control mb-2" min="1" max="300" required placeholder="Bot Amount" />
+              
+                <!-- Blook -->
+                <input type="text" id="blook_value" class="form-control mb-2" placeholder="Blook" />
+
+                <!-- Name Bypass -->
+                <div class="form-check" style="text-align: left;">
+                    <input class="form-check-input" type="checkbox" value="" id="name_bypass" />
+                    <label class="form-check-label" for="name_bypass">Name Bypass</label>
+                </div>
+              
+                <!-- Silent Flood -->
+                <div class="form-check" style="text-align: left;">
+                    <input class="form-check-input" type="checkbox" value="" id="silent_flood" />
+                    <label class="form-check-label" for="silent_flood">Silent Flood/Fill Game</label>
+                </div>
+              
+                <!-- Lag Host -->
+                <div class="form-check" style="text-align: left;">
+                    <input class="form-check-input" type="checkbox" value="" id="lag_host" />
+                    <label class="form-check-label" for="lag_host">Lag Host</label>
+                </div>
+
+                <!-- First Place Switch -->
+                <div class="form-check" style="text-align: left;">
+                    <input class="form-check-input" data-bs-toggle="collapse" data-bs-target="#fpsCollapse" aria-expanded="false" aria-controls="fpsCollapse" type="checkbox" value="" id="first_place_switch">
+                    <label class="form-check-label" for="first_place_switch">First Place Switch</label>
+                </div>
+                <div class="collapse mb-2" id="fpsCollapse">
+                    <div class="form-floating">
+                        <input class="form-control" placeholder="Enter value here..." id="fpsValue" />
+                        <label for="fpsValue">Text</label>
+                    </div>
+                </div>
+
+                <!-- Flood! -->
+                <button class="btn btn-success" style="width: 100%" id="join" type="submit">Flood!</button>
+            </form>
+            <div id="actions">
+                <textarea id="logs" class="form-control mb-2" readonly style="resize: none; width: 100%; height: 300px;">Logs will go here.</textarea>
+            </div>
+        </main>
+        <footer>
+            <a>Site made by s4300, Ducklife, generic, & dirt block • <a href="https://discord.gg/JsJe7bdYvE" target="_blank">Discord</a></a>
+        </footer>
+        <div id="bg"></div>
+        <div id="message" class="invisible">Error connecting to game!</div>
+    </body>
+</html>
+
+<!-- Firebase -->
+<script type="module">
+    import { initializeApp, deleteApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+    import { getAuth, signInWithCustomToken, setPersistence } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
+    import { getDatabase, ref, set, get, onValue } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-database.js";
+    window.initializeApp = initializeApp;
+    window.getAuth = getAuth;
+    window.deleteApp = deleteApp;
+    window.getDatabase = getDatabase;
+    window.ref = ref;
+    window.set = set;
+    window.get = get;
+    window.onValue = onValue;
+    window.signInWithCustomToken = signInWithCustomToken;
+    window.setPersistence = setPersistence;
+    const urlcode = new URLSearchParams(window.location.search).get("code");
+    if (urlcode) {
+        document.querySelector("#gcode").value = urlcode;
+    }
+</script>
+<script src="public/index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
